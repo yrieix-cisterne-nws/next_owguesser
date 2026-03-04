@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Footer from "./components/footer";
 import Header from "./components/header";
-import "./globals.css"; // Vos styles globaux
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "OWGuesser",
