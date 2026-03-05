@@ -78,7 +78,7 @@ export default function Register() {
           </button>
         </form>
         <div>
-          <p>{"Already have an account? "}<Link href="/login">Log in</Link></p>
+          <p>{"Already have an account? "}<Link href="/login" className="text-blue-500">Log in</Link></p>
         </div>
       </div>
     </div>
