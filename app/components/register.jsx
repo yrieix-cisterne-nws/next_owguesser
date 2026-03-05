@@ -40,7 +40,7 @@ export default function Register() {
     } catch (err) {
         setError("An error occurred. Please try again.")
     }
-  };  // ← AJOUTER CETTE ACCOLADE
+  };
 
   return (
     <div className="">
