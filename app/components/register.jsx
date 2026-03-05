@@ -3,32 +3,33 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 
-export default function Login() {
+export default function Register() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [username, setUsername] = useState("")
+  const [error, setError] = useState("")
   const router = useRouter();
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault()
-    setError("")
-    setLoading(true)
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           email,
-          password
+          password,
+          username
         })
       });
 
       const data = await response.json()
 
       if (!response.ok) {
-        setError(data.message || "Login failed")
+        setError(data.message || "Sign up failed")
         return;
       }
 
@@ -37,17 +38,25 @@ export default function Login() {
 
       router.push("/");
     } catch (err) {
-      setError("An error occurred. Please try again.")
-    } finally {
-      setLoading(false)
+        setError("An error occurred. Please try again.")
     }
-  };
+  };  // ← AJOUTER CETTE ACCOLADE
 
   return (
     <div className="">
       <div className="">
-        <h1>Login</h1>
-        <form onSubmit={handleLogin} className="flex flex-col gap-2">
+        <h1>Sign up</h1>
+        
+        {error && <p style={{color: "red"}}>{error}</p>}
+        
+        <form onSubmit={handleRegister} className="flex flex-col gap-2">
+          <input type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="border-2 rounded-md p-1 border-[#34495e]"
+            required
+          />
           <input
             type="email"
             placeholder="Email"
@@ -65,11 +74,11 @@ export default function Login() {
             required
           />
           <button type="submit" className="rounded-md bg-white hover:bg-[#9f9f9f]">
-            <p>Se connecter</p>
+            <p>Créer le compte</p>
           </button>
         </form>
         <div>
-          <p>Don&apos;t have an account ? <Link href="/register">Sign up</Link></p>
+          <p>{"Already have an account? "}<Link href="/login">Log in</Link></p>
         </div>
       </div>
     </div>
