@@ -4,6 +4,7 @@ import HeroImage from "./components/heroimage";
 import HeroGuess from "./components/heroguess";
 import { HeroRandom } from "./components/herorandom";
 import Difficulty from "./components/difficulty";
+import { saveScore } from "./components/scorehandler";
 
 
 export default function Hero() {
@@ -18,11 +19,16 @@ export default function Hero() {
     }, []);
 
     const handleGuess = (guess) => {
+        if (!currentHero) return;
+
         if (guess.toLowerCase() === currentHero.name.toLowerCase()) {
             setCurrentStreak(currentStreak + 1);
             HeroRandom(setCurrentHero);
         } else {
             alert(`Wrong! The correct answer was ${currentHero.name}`);
+            
+            saveScore(currentStreak, difficulty);
+            
             if (currentStreak > bestStreak) {
                 setBestStreak(currentStreak);
             }
@@ -30,9 +36,7 @@ export default function Hero() {
         }
     };
 
-
-
-   return (
+    return (
         <div className="">
             <div className="flex justify-center">
                 <h1 className="text-4xl">OWGuesser</h1>
