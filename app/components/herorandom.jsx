@@ -4,7 +4,7 @@ export const HeroRandom = async (setCurrentHero) => {
         const herojson = await herolist.json();
         
         const randomhero = herojson[Math.floor(Math.random() * herojson.length)];
-        const herodetail = await fetch(`https://overfast-api.tekrop.fr/heroes/${randomhero.key}`);
+        const herodetail = await fetch(`https://overfast-api.tekrop.fr/heroes/${randomhero.key}`)
         const herodetailjson = await herodetail.json();
 
         setCurrentHero({
@@ -12,7 +12,7 @@ export const HeroRandom = async (setCurrentHero) => {
             image: herodetailjson.portrait
         })
     } catch (error) {
-        console.error('Erreur:', error);
+        console.error('Erreur:', error)
     }
 };
 

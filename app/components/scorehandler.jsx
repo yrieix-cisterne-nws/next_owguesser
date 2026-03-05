@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
 export async function saveScore(score, difficulty) {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token")
 
   if (!token) {
-    console.error("Not logged in");
+    console.error("Not logged in")
     return false;
   }
 
@@ -22,13 +22,13 @@ export async function saveScore(score, difficulty) {
     });
 
     if (!response.ok) {
-      console.error("Error saving score");
-      return false;
+      console.error("Error saving score")
+      return false
     }
 
-    return true;
+    return true
   } catch (error) {
-    console.error("Error:", error);
-    return false;
+    console.error("Error:", error)
+    return false
   }
 }

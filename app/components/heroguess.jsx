@@ -1,14 +1,14 @@
-"use client";
-import { useState } from "react";
+"use client"
+import { useState } from "react"
 
 
 export default function HeroGuess({ onSubmit}) {
-    const [guess, setGuess] = useState("");
+    const [guess, setGuess] = useState("")
 
     const inputChange = (e) => {
-        e.preventDefault();
-        onSubmit(guess);
-        setGuess("");
+        e.preventDefault()
+        onSubmit(guess)
+        setGuess("")
     }
     return(
         <div className="flex flex-row justify-center pt-4">

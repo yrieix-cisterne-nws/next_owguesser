@@ -1,38 +1,43 @@
 "use client";
-import { useState, useEffect } from "react";
-import HeroImage from "./components/heroimage";
-import HeroGuess from "./components/heroguess";
-import { HeroRandom } from "./components/herorandom";
-import Difficulty from "./components/difficulty";
-import { saveScore } from "./components/scorehandler";
+import { useState, useEffect } from "react"
+import HeroImage from "./components/heroimage"
+import HeroGuess from "./components/heroguess"
+import { HeroRandom } from "./components/herorandom"
+import Difficulty from "./components/difficulty"
+import { saveScore } from "./components/scorehandler"
+import { useScores } from "./components/scoreloader"
+import Link from "next/link";
 
 
 export default function Hero() {
-    const [currentHero, setCurrentHero] = useState(null);
-    const [currentStreak, setCurrentStreak] = useState(0);
-    const [bestStreak, setBestStreak] = useState(0);
-    const [difficulty, setDifficulty] = useState("easy");
+    const [currentHero, setCurrentHero] = useState(null)
+    const [currentStreak, setCurrentStreak] = useState(0)
+    const [difficulty, setDifficulty] = useState("easy")
+    const { bestStreak, loadScores} = useScores()
 
 
     useEffect(() => {
         HeroRandom(setCurrentHero);
+        loadScores()
     }, []);
 
-    const handleGuess = (guess) => {
-        if (!currentHero) return;
+    const handleGuess = async (guess) => {
+        if (!currentHero) return
 
         if (guess.toLowerCase() === currentHero.name.toLowerCase()) {
-            setCurrentStreak(currentStreak + 1);
-            HeroRandom(setCurrentHero);
+            setCurrentStreak(currentStreak + 1)
+            HeroRandom(setCurrentHero)
         } else {
-            alert(`Wrong! The correct answer was ${currentHero.name}`);
+            alert(`Wrong! The correct answer was ${currentHero.name}`)
             
-            saveScore(currentStreak, difficulty);
+            saveScore(currentStreak, difficulty)
             
             if (currentStreak > bestStreak) {
-                setBestStreak(currentStreak);
+                await saveScore(currentStreak, bestStreak)
             }
-            setCurrentStreak(0);
+            setCurrentStreak(0)
+            await loadScores()
+
         }
     };
 
