@@ -14,7 +14,7 @@ export default function HeroGuess({ onSubmit}) {
         <div className="flex flex-row justify-center pt-4">
             <form onSubmit={inputChange} className="flex gap-4">
                 <input type="text" placeholder="Enter your guess here" className="bg-white rounded-xl p-1" value={guess} onChange={(e) => setGuess(e.target.value)}/>
-                <button type="submit" className="cursor-pointer bg-[#34495e] text-white p-1 rounded-xl">Soumettre</button>
+                <button type="submit" className="cursor-pointer bg-[#34495e] text-white p-1 rounded-xl">Submit</button>
             </form>
         </div>
     )

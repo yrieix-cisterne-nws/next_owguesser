@@ -6,7 +6,6 @@ import { HeroRandom } from "./components/herorandom"
 import Difficulty from "./components/difficulty"
 import { saveScore } from "./components/scorehandler"
 import { useScores } from "./components/scoreloader"
-import Link from "next/link";
 
 
 export default function Hero() {

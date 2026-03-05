@@ -74,7 +74,7 @@ export default function Register() {
             required
           />
           <button type="submit" className="rounded-md bg-white hover:bg-[#9f9f9f]">
-            <p>Créer le compte</p>
+            <p>Create account</p>
           </button>
         </form>
         <div>

@@ -65,7 +65,7 @@ export default function Login() {
             required
           />
           <button type="submit" className="rounded-md bg-white hover:bg-[#9f9f9f]">
-            <p>Se connecter</p>
+            <p>Log in</p>
           </button>
         </form>
         <div>
